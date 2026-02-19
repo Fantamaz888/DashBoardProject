@@ -1,0 +1,79 @@
+.Sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 1px solid #dce9fe;
+    padding: 0px 0px 24px;
+    height: 100vh;
+    background: #f5f7fb;
+}
+
+.CompanyLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0px 4px;
+}
+
+.NavButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ContactButton {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.Logo {
+    scale: 1.2;
+    width: 40px;
+    height: 40px;
+}
+
+.CaretDoubleLeft {
+    width: 24px;
+    height: 24px;
+}
+
+
+.SquaresFour {
+   width: 20px;
+   height: 20px;
+   padding: 16px;
+}
+
+.ChatCircleDots {
+    width: 20px;
+    height: 20px;
+    padding: 16px;
+}
+
+.ShareNetwork {
+    width: 20px;
+    height: 20px;
+    padding: 16px;
+}
+
+.Users {
+    width: 20px;
+    height: 20px;
+    padding: 16px;
+}
+
+.Coins {
+    width: 20px;
+    height: 20px;
+    padding: 16px;
+}
+
+.cta {
+    border-radius: 12px;
+    padding: 16px;
+    width: 51px;
+    height: 51px;
+}
