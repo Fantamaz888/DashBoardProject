@@ -6,30 +6,38 @@ const ChanelSelect = ({ channels }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [tempChannel, setTempChannel] = useState('Все каналы');
   const [appliedChannel, setAppliedChannel] = useState('Все каналы');
-  const [isStepConfirm, setIsStepConfirm] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const allChannels = ['Все каналы', ...(channels || [])];
 
   const handleSelectChannel = (channel) => {
     setTempChannel(channel);
-    setIsStepConfirm(true);
+    setIsDropdownOpen(false);
   };
 
   const handleApply = () => {
     setAppliedChannel(tempChannel);
     setIsOpen(false);
-    setIsStepConfirm(false);
+    setIsDropdownOpen(false);
   };
 
   const handleReset = () => {
     setTempChannel('Все каналы');
     setAppliedChannel('Все каналы');
     setIsOpen(false);
-    setIsStepConfirm(false);
+    setIsDropdownOpen(false);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+    setIsDropdownOpen(false);
   };
 
   const isChanged = tempChannel !== appliedChannel;
 
   return (
     <div className={styles.wrapper}>
+      {/* Кнопка для десктопа */}
       <div
         className={styles.mainButton}
         onClick={() => setIsOpen(!isOpen)}
@@ -38,41 +46,62 @@ const ChanelSelect = ({ channels }) => {
         <span className={styles.arrow}>⌄</span>
       </div>
 
+      {/* Кнопка cta.svg для мобильных */}
+      <button
+        className={styles.mobileButton}
+        onClick={() => setIsOpen(true)}
+        aria-label="Открыть фильтры"
+      >
+        <img src="/assets/cta.svg" alt="Фильтры" className={styles.ctaIcon} />
+      </button>
+
+      {/* Оверлей для мобильных */}
       {isOpen && (
-        <div className={styles.dropdown}>
+        <div
+          className={styles.overlay}
+          onClick={handleCloseModal}
+        />
+      )}
+
+      {isOpen && (
+        <div className={styles.dropdown} onClick={(e) => e.stopPropagation()}>
           <div className={styles.header}>
             <span>Фильтры</span>
             <button
               className={styles.close}
-              onClick={() => setIsOpen(false)}
+              onClick={handleCloseModal}
+              aria-label="Закрыть"
             >
               ✕
             </button>
           </div>
 
-          {!isStepConfirm ? (
-            <div className={styles.list}>
-              {channels?.map((channel) => (
-                <div
-                  key={channel}
-                  className={styles.option}
-                  onClick={() => handleSelectChannel(channel)}
-                >
-                  {channel}
-                  {tempChannel === channel && (
-                    <span className={styles.check}>✔</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          ) : (
+          <div className={styles.dropdownContainer}>
             <div
-              className={styles.selectedPreview}
-              onClick={() => setIsStepConfirm(false)}
+              className={styles.dropdownButton}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
-              {tempChannel}
+              <span>{tempChannel}</span>
+              <span className={`${styles.dropdownArrow} ${isDropdownOpen ? styles.dropdownArrowOpen : ''}`}>⌄</span>
             </div>
-          )}
+
+            {isDropdownOpen && (
+              <div className={styles.dropdownList}>
+                {allChannels.map((channel) => (
+                  <div
+                    key={channel}
+                    className={`${styles.dropdownOption} ${tempChannel === channel ? styles.dropdownOptionSelected : ''}`}
+                    onClick={() => handleSelectChannel(channel)}
+                  >
+                    {channel}
+                    {tempChannel === channel && (
+                      <span className={styles.check}>✔</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className={styles.footer}>
             <button
@@ -83,15 +112,12 @@ const ChanelSelect = ({ channels }) => {
               Применить фильтры
             </button>
 
-            {(appliedChannel !== 'Все каналы' ||
-              tempChannel !== 'Все каналы') && (
-              <button
-                className={styles.btnReset}
-                onClick={handleReset}
-              >
-                Сбросить
-              </button>
-            )}
+            <button
+              className={styles.btnReset}
+              onClick={handleReset}
+            >
+              Сбросить
+            </button>
           </div>
         </div>
       )}

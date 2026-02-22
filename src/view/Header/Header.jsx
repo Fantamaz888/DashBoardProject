@@ -1,8 +1,18 @@
 import React from 'react'
 import Style from './Header.module.css'
-export const Header = () => {
+export const Header = ({ onMenuClick }) => {
     return (
         <div className={Style.Header}>
+            <button
+                type="button"
+                className={Style.MenuButton}
+                onClick={onMenuClick}
+                aria-label="Открыть меню"
+            >
+                <span className={Style.MenuLine} />
+                <span className={Style.MenuLine} />
+                <span className={Style.MenuLine} />
+            </button>
             <div className={Style.VectorWrapper}>
                 <div>
                     <img className={Style.Vector} src="/assets/Header/Vector.svg" alt="" />

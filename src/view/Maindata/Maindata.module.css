@@ -60,3 +60,78 @@
     width: 100%;
     margin-top: 20px;
 }
+
+/* Планшет */
+@media (max-width: 1024px) {
+    .main_content {
+        margin-top: 16px;
+        margin-left: 16px;
+    }
+
+    .h2 {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+
+    .chat {
+        height: auto;
+        min-height: 320px;
+        padding: 16px;
+    }
+
+    .chat h2 {
+        font-size: 20px;
+    }
+
+    .chat_header {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+
+/* Телефон */
+@media (max-width: 768px) {
+    .main_content {
+        margin-top: 12px;
+        margin-left: 0;
+    }
+
+    .h2 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .chat {
+        padding: 12px;
+        min-height: 280px;
+    }
+
+    .chat h2 {
+        font-size: 18px;
+    }
+
+    .chat_header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cards {
+        gap: 12px;
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main_content {
+        margin-top: 8px;
+    }
+
+    .h2 {
+        font-size: 20px;
+    }
+
+    .chat h2 {
+        font-size: 16px;
+    }
+}
