@@ -63,3 +63,77 @@
     border: 1px solid #dce9fe;
     border-radius: 50%;
 }
+
+/* Кнопка гамбургер-меню (видна только на планшете и телефоне) */
+.MenuButton {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    margin-right: 8px;
+    padding: 0;
+    border: 1px solid #dce9fe;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.MenuLine {
+    width: 20px;
+    height: 2px;
+    background: #191919;
+    border-radius: 1px;
+}
+
+@media (max-width: 768px) {
+    .MenuButton {
+        display: flex;
+    }
+
+    .Header {
+        padding: 0 16px;
+        height: 64px;
+    }
+
+    .PersonalInfo {
+        padding: 6px 10px;
+        height: 48px;
+        gap: 8px;
+    }
+
+    .Photo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .Name {
+        font-size: 14px;
+    }
+
+    .VectorWrapper {
+        width: 48px;
+        height: 48px;
+    }
+
+    .Vector {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Header {
+        padding: 0 12px;
+    }
+
+    .Name {
+        display: none;
+    }
+
+    .PersonalInfo {
+        padding: 6px 8px;
+    }
+}

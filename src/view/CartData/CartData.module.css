@@ -1,0 +1,59 @@
+.cards {
+    width: calc((100% / 3) - 11px);
+    min-width: 140px;
+    height: 130px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Планшет: 2 карточки в ряд */
+@media (max-width: 1024px) {
+    .cards {
+        width: calc((100% / 2) - 8px);
+        min-width: 0;
+    }
+}
+
+/* Телефон: 1 карточка в ряд */
+@media (max-width: 600px) {
+    .cards {
+        width: 100%;
+        height: auto;
+        min-height: 100px;
+        padding: 16px;
+    }
+
+    .header_cards p {
+        font-size: 28px;
+    }
+
+    .footer_cards {
+        font-size: 16px;
+        padding-top: 12px;
+    }
+}
+
+.header_cards p{
+        font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+}
+.header_cards{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer_cards{
+    padding-top: 25px;
+     font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+}
+

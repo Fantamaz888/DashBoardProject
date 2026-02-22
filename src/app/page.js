@@ -1,20 +1,30 @@
+'use client';
 
-import { Sidebar } from "@/view/Sidebar/Sidebar";
-
-
-import styles from "./page.module.css";
-import { Header } from "@/view/Header/Header";
-import Maindata from "@/view/Maindata/Maindata"
+import { useState } from "react";
+import Sidebar from "@/view/Sidebar/Sidebar";
+import Header from "@/view/Header/Header";
+import Maindata from "@/view/Maindata/Maindata";
 
 export default function Home() {
-  return (
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    <div className="Wrapper">
-      <Sidebar/>
-      <div className="Content">
-        <Header/>
-        </div>
-        <Maindata/>
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
+
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        
+        <Header onMenuClick={() => setSidebarOpen(true)} />
+
+        <main className="mainContent" style={{ flex: 1 }}>
+          <Maindata />
+        </main>
+
+      </div>
     </div>
   );
 }

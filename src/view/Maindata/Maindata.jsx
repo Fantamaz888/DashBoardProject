@@ -43,16 +43,6 @@ const Maindata = () => {
                 </Section>
 
             </div>
-
-
-            {/* <div>
-                <Cardinfo
-                    title='Остаток сообщений'
-                    value='1500'
-                    icon={<img src='/assets/Maininfo/ChatCircleText.svg' />}
-                />
-
-            </div> */}
         </div>
 
     )
