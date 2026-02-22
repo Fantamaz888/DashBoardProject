@@ -1,0 +1,32 @@
+.cards {
+    width: calc((100% / 3) - 11px); 
+    
+    height: 130px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box; 
+}
+
+.header_cards p{
+        font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+}
+.header_cards{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer_cards{
+    padding-top: 25px;
+     font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+}
+

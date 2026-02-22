@@ -1,0 +1,113 @@
+
+.wrapper {
+  position: relative;
+  width: 160px;
+  font-family: sans-serif;
+}
+
+.mainButton {
+  height: 40px;
+  border: 1px solid #dce9fe;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  cursor: pointer;
+  background: white;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 12px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  width: 260px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 16px;
+  z-index: 10;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.option {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option:hover {
+  background: #f5f8ff;
+}
+
+.check {
+  color: #5573e9;
+}
+
+.selectedPreview {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f5f8ff;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btnApply {
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #5573e9 0%, #5c10c2 100%);
+  color: white;
+  cursor: pointer;
+}
+
+.btnDisabled {
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background: #ccc;
+  color: white;
+}
+
+.btnReset {
+  height: 40px;
+  border: 1px solid #5b5fff;
+  border-radius: 12px;
+  background: white;
+  color: #5b5fff;
+  cursor: pointer;
+}
