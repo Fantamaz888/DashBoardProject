@@ -1,6 +1,6 @@
 import React from 'react'
 import Style from './Header.module.css'
-export const Header = ({ onMenuClick }) => {
+const Header = ({ onMenuClick }) => {
     return (
         <div className={Style.Header}>
             <button
@@ -30,3 +30,4 @@ export const Header = ({ onMenuClick }) => {
         </div>
     )
 }
+export { Header }

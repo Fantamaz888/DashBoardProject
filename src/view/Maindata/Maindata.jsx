@@ -1,51 +1,60 @@
 import React from 'react'
-import styles from './Maindata.module.css'
-import Card from '../components/Card/Card'
-import Section from '../components/Section/Section'
-
-const Maindata = () => {
+import Style from './Maindata.module.css'
+import { CartData } from "@/view/CartData/CartData";
+import upSvg from "@/view/CartData/img/up.svg";
+import ChanelSelect from '../ChanelSelect/ChanelSelect';
+export const Maindata = () => {
+    const channels = ['Telegram', 'Viber', 'Facebook', 'Instagram'];
     return (
-        <div className={styles.MainContent}>
-            <div className={styles.HeaderMain}>
-                <p>Главная</p>
-            </div>
 
-            <div className={styles.InfoBoxes}>
-                <Section
-                    title='Результативность чатов'
-                    action={<div style={{ color: '#6E41E2' }}>Все агенты</div>}
-                >
-                    <Card
-                        title='Остаток сообщений'
-                        value='1500'
-                        icon={<img src='/assets/Maindata/TrendUp.svg' />} />
-                    <Card
-                        title='Средний расход'
-                        value='0'
-                        subValue='/день'
-                        icon={<img src='/assets/Maindata/TrendDown.svg' />} />
-                    <Card
-                        title='Прогноз до исчерпания'
-                        value='--'
-                        icon={<img src='/assets/Maininfo/CalendarX.svg' />} />
-                    <Card
-                        title='Обработано диалогов'
-                        value='1245'
-                        icon={<img src='/assets/Maininfo/ChatCircle.svg' />} />
-                    <Card
-                        title='С виполненой  задачей'
-                        value='864'
-                        icon={<img src='/assets/Maininfo/CheckCircle.svg' />} />
-                    <Card
-                        title='Эффективность чатов'
-                        value='63%'
-                        icon={<img src='/assets/Maininfo/Target.svg' />} />
-                </Section>
-
-            </div>
+        <div className={Style.main_content}>
+                <h2 className={Style.h2}>Главная</h2>
+                <div className={Style.chat}>
+                    <div className={Style.chat_header}>
+                        <h2>Результативность чатов</h2>
+                        <ChanelSelect channels={channels} />
+                    </div>
+                    <div className={Style.cards}>
+                        <CartData
+                    text="Всего начатых чатов"
+                    value="654"
+                    image="/assets/icons/up.svg"
+                    color="#E3F2FD"
+                     />
+                       <CartData
+                    text="Неотвеченные чаты"
+                    value="124"
+                    image="/assets/icons/down.svg"
+                    color="#E3F2FD"
+                     />
+                       <CartData
+                    text="Отвеченные чаты"
+                    value="430"
+                    image="/assets/icons/up.svg"
+                    color="#E3F2FD"
+                     />
+                      <CartData
+                    text="Чаты с выполненной задачей"
+                    value="--"
+                    image="/assets/icons/cr.svg"
+                    color="#E3F2FD"
+                     />
+                        <CartData
+                    text="Чаты с вызовом менеджера"
+                    value="3"
+                    image="/assets/icons/nodata.svg"
+                    color="#E3F2FD"
+                     />
+                       <CartData
+                    text="Выполнение повторных задач"
+                    value="286"
+                    image="/assets/icons/down.svg"
+                    color="#E3F2FD"
+                     />
+                    </div>
+                   
+                </div>
         </div>
-
-    )
-}
-
-export default Maindata
+     
+    );
+};

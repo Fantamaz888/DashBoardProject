@@ -1,7 +1,7 @@
 import React from 'react'
 import Style from './Sidebar.module.css'
 
-export const Sidebar = ({ isOpen = false, onClose }) => {
+ const Sidebar = ({ isOpen = false, onClose }) => {
     return (
         <>
         {onClose && (
@@ -43,3 +43,4 @@ export const Sidebar = ({ isOpen = false, onClose }) => {
     )
 }
 
+export { Sidebar } 

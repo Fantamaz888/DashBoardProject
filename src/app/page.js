@@ -1,9 +1,8 @@
 'use client';
-
 import { useState } from "react";
-import Sidebar from "@/view/Sidebar/Sidebar";
-import Header from "@/view/Header/Header";
-import Maindata from "@/view/Maindata/Maindata";
+import { Sidebar } from "@/view/Sidebar/Sidebar";
+import { Maindata } from "@/view/Maindata/Maindata";
+import { Header } from "@/view/Header/Header";
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
