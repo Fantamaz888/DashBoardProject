@@ -1,127 +1,189 @@
 'use client';
+
 import React, { useState } from 'react';
-import styles from './ChanelSelect.module.css';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  IconButton,
+  Typography,
+} from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ChanelSelect = ({ channels }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [tempChannel, setTempChannel] = useState('Все каналы');
   const [appliedChannel, setAppliedChannel] = useState('Все каналы');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const allChannels = ['Все каналы', ...(channels || [])];
-
-  const handleSelectChannel = (channel) => {
-    setTempChannel(channel);
-    setIsDropdownOpen(false);
-  };
 
   const handleApply = () => {
     setAppliedChannel(tempChannel);
     setIsOpen(false);
-    setIsDropdownOpen(false);
   };
 
   const handleReset = () => {
     setTempChannel('Все каналы');
     setAppliedChannel('Все каналы');
     setIsOpen(false);
-    setIsDropdownOpen(false);
-  };
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-    setIsDropdownOpen(false);
   };
 
   const isChanged = tempChannel !== appliedChannel;
 
   return (
-    <div className={styles.wrapper}>
-      {/* Кнопка для десктопа */}
-      <div
-        className={styles.mainButton}
-        onClick={() => setIsOpen(!isOpen)}
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      {/* Desktop / tablet trigger */}
+      <Button
+        variant="outlined"
+        onClick={() => setIsOpen(true)}
+        endIcon={<KeyboardArrowDownIcon />}
+        sx={{
+          display: { xs: 'none', sm: 'inline-flex' },
+          height: 40,
+          borderRadius: 2,
+          borderColor: '#dce9fe',
+          textTransform: 'none',
+          fontSize: 14,
+          px: 1.5,
+          color: '#191919',
+          backgroundColor: '#fff',
+        }}
       >
         {appliedChannel}
-        <span className={styles.arrow}>⌄</span>
-      </div>
+      </Button>
 
-      {/* Кнопка cta.svg для мобильных */}
-      <button
-        className={styles.mobileButton}
+      {/* Mobile CTA button */}
+      <IconButton
         onClick={() => setIsOpen(true)}
         aria-label="Открыть фильтры"
+        sx={{
+          display: { xs: 'inline-flex', sm: 'none' },
+          p: 0,
+          width: 44,
+          height: 44,
+          ml: 0.5,
+        }}
       >
-        <img src="/assets/cta.svg" alt="Фильтры" className={styles.ctaIcon} />
-      </button>
-
-      {/* Оверлей для мобильных */}
-      {isOpen && (
-        <div
-          className={styles.overlay}
-          onClick={handleCloseModal}
+        <Box
+          component="img"
+          src="/assets/cta.svg"
+          alt="Фильтры"
+          sx={{ width: 44, height: 44 }}
         />
-      )}
+      </IconButton>
 
-      {isOpen && (
-        <div className={styles.dropdown} onClick={(e) => e.stopPropagation()}>
-          <div className={styles.header}>
-            <span>Фильтры</span>
-            <button
-              className={styles.close}
-              onClick={handleCloseModal}
-              aria-label="Закрыть"
+      <Dialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        fullWidth
+        maxWidth="xs"
+      >
+        <DialogTitle
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            pr: 1,
+          }}
+        >
+          <Typography sx={{ fontWeight: 600, fontSize: 18 }}>
+            Фильтры
+          </Typography>
+          <IconButton
+            onClick={() => setIsOpen(false)}
+            aria-label="Закрыть"
+            size="small"
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+
+        <DialogContent dividers sx={{ pt: 2 }}>
+          <FormControl fullWidth>
+            <InputLabel id="channel-select-label">Канал</InputLabel>
+            <Select
+              labelId="channel-select-label"
+              value={tempChannel}
+              label="Канал"
+              onChange={(e) => setTempChannel(e.target.value)}
             >
-              ✕
-            </button>
-          </div>
+              {allChannels.map((channel) => (
+                <MenuItem key={channel} value={channel}>
+                  {channel}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </DialogContent>
 
-          <div className={styles.dropdownContainer}>
-            <div
-              className={styles.dropdownButton}
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-              <span>{tempChannel}</span>
-              <span className={`${styles.dropdownArrow} ${isDropdownOpen ? styles.dropdownArrowOpen : ''}`}>⌄</span>
-            </div>
+        <DialogActions
+          sx={{
+            flexDirection: 'column',
+            alignItems: 'stretch',
+            gap: 1.5,
+            px: 3,
+            pb: 3,
+          }}
+        >
+         <Button
+    fullWidth
+    variant="contained"
+    disabled={!isChanged}
+    onClick={handleApply}
+    sx={{
+      textTransform: 'none',
+      borderRadius: 2,
+      height: 44,
+      fontSize: 15,
+      background: 'linear-gradient(180deg, #5573e9 0%, #5c10c2 100%)',
+      color: '#fff',
 
-            {isDropdownOpen && (
-              <div className={styles.dropdownList}>
-                {allChannels.map((channel) => (
-                  <div
-                    key={channel}
-                    className={`${styles.dropdownOption} ${tempChannel === channel ? styles.dropdownOptionSelected : ''}`}
-                    onClick={() => handleSelectChannel(channel)}
-                  >
-                    {channel}
-                    {tempChannel === channel && (
-                      <span className={styles.check}>✔</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+      '&:hover': {
+        background: 'linear-gradient(180deg, #4764d5 0%, #4d0fa8 100%)',
+      },
 
-          <div className={styles.footer}>
-            <button
-              className={isChanged ? styles.btnApply : styles.btnDisabled}
-              onClick={handleApply}
-              disabled={!isChanged}
-            >
-              Применить фильтры
-            </button>
+      '&.Mui-disabled': {
+        background: '#d0d0d0',
+        color: '#757575',
+      },
+    }}
+  >
+    Применить фильтры
+  </Button>
 
-            <button
-              className={styles.btnReset}
-              onClick={handleReset}
-            >
-              Сбросить
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+
+  <Button
+    fullWidth
+    variant="outlined"
+    onClick={handleReset}
+    sx={{
+      textTransform: 'none',
+      borderRadius: 2,
+      height: 44,
+      fontSize: 15,
+      borderWidth: 1.5,
+      borderColor: '#5b5fff',
+      color: '#5b5fff',
+
+      '&:hover': {
+        borderColor: '#4a4ee0',
+        backgroundColor: 'rgba(91, 95, 255, 0.04)',
+      },
+    }}
+  >
+    Сбросить
+  </Button>
+</DialogActions>
+      </Dialog>
+    </Box>
   );
 };
 
